@@ -1,3 +1,6 @@
 -- support multiple dialects
---cache.provider_class?/
+--cache.provider_class? second cache
 --muiltple entities
+--txManager and Datasource??
+--spring aop
+--datasource jndi
