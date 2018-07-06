@@ -2,6 +2,7 @@ package com.abhi.dao;
 
 import com.abhi.entity.Event;
 import junit.framework.TestCase;
+import org.dbunit.database.IDatabaseConnection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -34,6 +35,7 @@ public class AppDaoTestNativeHibernate {
 
     @Before
     public void setUp() {
+        IDatabaseConnection iDatabaseConnection = null;
 
     }
 
