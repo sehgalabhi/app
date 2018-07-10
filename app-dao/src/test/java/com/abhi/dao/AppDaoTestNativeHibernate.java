@@ -2,7 +2,14 @@ package com.abhi.dao;
 
 import com.abhi.entity.Event;
 import junit.framework.TestCase;
+import org.dbunit.DatabaseUnitException;
+import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.DataSetException;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.ext.h2.H2Connection;
+import org.dbunit.operation.DatabaseOperation;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -16,6 +23,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 import javax.print.attribute.standard.MediaSize;
+import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
@@ -33,15 +42,26 @@ public class AppDaoTestNativeHibernate {
     @Inject
     private SessionFactory sessionFactory;
 
+    @Inject
+    private DataSource dataSource;
+
     @Before
     public void setUp() {
-        IDatabaseConnection iDatabaseConnection = null;
+        try {
+            IDatabaseConnection databaseConnection = new DatabaseDataSourceConnection(dataSource);
 
-    }
+            IDataSet dataSet = new FlatXmlDataSetBuilder().build(ClassLoader.getSystemResource("dbunit/app-test-data.xml").openStream());
+            DatabaseOperation.CLEAN_INSERT.execute(databaseConnection, dataSet);
 
-
-    @After
-    public void tearDown() throws Exception {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (DataSetException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DatabaseUnitException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -57,7 +77,7 @@ public class AppDaoTestNativeHibernate {
         session = sessionFactory.openSession();
         session.beginTransaction();
         Query<Event> namedQuery = session.createQuery("from Event", Event.class);
-        namedQuery.list().forEach(t -> System.out.println(t.getId() + "" + t.getTitle() + t.getDate()));
+        Assert.assertTrue(namedQuery.list().size() == 6);
         session.getTransaction().commit();
         session.close();
 
