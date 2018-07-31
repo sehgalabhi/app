@@ -9,6 +9,16 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+    </properties>
 
     <build>
         <pluginManagement>
@@ -74,11 +84,25 @@
                 <artifactId>dbunit</artifactId>
                 <version>2.5.4</version>
             </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.5</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
     <modules>
         <module>app-dao</module>
+        <module>app-dao-boot</module>
+        <module>app-ws-bootGF</module>
+        <module>app-ws-boot</module>
+        <module>app-test</module>
     </modules>
 
 

@@ -1,6 +1,8 @@
-package com.abhi.dao.impl;
+package com.abhi.demo.dao.impl;
 
-import com.abhi.dao.AppDao;
+import com.abhi.demo.dao.AppDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -12,6 +14,8 @@ import java.sql.SQLException;
  */
 @Component
 public class AppDaoImpl implements AppDao{
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AppDaoImpl.class);
 
     //TODO Add Logger
     @Override

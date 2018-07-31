@@ -1,4 +1,4 @@
-package com.abhi.dao;
+package com.abhi.demo.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
