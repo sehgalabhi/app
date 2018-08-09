@@ -1,7 +1,7 @@
 package com.abhi.demo.events;
 
 import com.abhi.demo.github.GithubClient;
-import com.abhi.demo.github.RepositoryEvent;
+import com.abhi.demo.github.api.RepoCommits;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +20,7 @@ public class CommitsController {
 
     @GetMapping("/commits/{repoName}")
     @ResponseBody
-    public RepositoryEvent[] fetchEvents(@PathVariable String repoName){
+    public RepoCommits[] fetchEvents(@PathVariable String repoName){
         GithubProject project = this.repository.findByRepoName(repoName);
         return githubClient.fetchEvents(project.getOrgName(), project.getRepoName()).getBody();
     }

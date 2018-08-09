@@ -1,6 +1,7 @@
 package com.abhi.demo.github;
 
 import com.abhi.demo.GithubProperties;
+import com.abhi.demo.github.api.RepoCommits;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
@@ -27,8 +28,8 @@ public class GithubClient {
         this.restTemplate = builder.additionalInterceptors(new GithubAppTokenInterceptor(properties.getToken())).build();
     }
 
-    public ResponseEntity<RepositoryEvent[]> fetchEvents(String orgName, String repoName) {
-        return this.restTemplate.getForEntity(EVENT_ISSUES_URL, RepositoryEvent[].class, orgName, repoName);
+    public ResponseEntity<RepoCommits[]> fetchEvents(String orgName, String repoName) {
+        return this.restTemplate.getForEntity(EVENT_ISSUES_URL, RepoCommits[].class, orgName, repoName);
     }
 
     private static class GithubAppTokenInterceptor implements ClientHttpRequestInterceptor {

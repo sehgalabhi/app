@@ -103,6 +103,7 @@
         <module>app-ws-bootGF</module>
         <module>app-ws-boot</module>
         <module>app-test</module>
+        <module>app-spring-data</module>
     </modules>
 
 
