@@ -1,7 +1,7 @@
 package com.abhi.demo.dao;
 
 import com.abhi.demo.dao.impl.AppDaoImpl;
-import com.abhi.demo.entity.Event;
+import com.abhi.demo.entities.Event;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;

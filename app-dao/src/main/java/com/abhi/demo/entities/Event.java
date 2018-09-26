@@ -1,4 +1,4 @@
-package com.abhi.demo.entity;
+package com.abhi.demo.entities;
 
 import java.util.Date;
 

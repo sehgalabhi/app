@@ -32,6 +32,9 @@
                         <target>1.8</target>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId></plugin>
             </plugins>
         </pluginManagement>
 
@@ -95,15 +98,34 @@
                 <version>1.7.5</version>
             </dependency>
 
+            <!-- reactor 3-->
+            <dependency>
+                <groupId>io.projectreactor</groupId>
+                <artifactId>reactor-bom</artifactId>
+                <version>Bismuth-SR10</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--mongodb -->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>3.8.0-beta2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <modules>
         <module>app-dao</module>
         <module>app-dao-boot</module>
-        <module>app-ws-bootGF</module>
+        <module>app-ws-boot</module>
         <module>app-ws-boot</module>
         <module>app-test</module>
         <module>app-spring-data</module>
+        <module>app-web-sockets</module>
+        <module>app-reactor3</module>
+        <module>app-mongo-db</module>
+        <module>app-spring-security</module>
     </modules>
 
 
